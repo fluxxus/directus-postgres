@@ -1,0 +1,16 @@
+{
+  "name": "directus",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Directus Application",
+  "scripts": {
+    "start" : "directus bootstrap && directus start",
+    "bootstrap": "directus bootstrap"
+  },
+  "devDependencies": {
+    "directus": "^9.12.2"
+  },
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
+}

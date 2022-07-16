@@ -1,0 +1,63 @@
+config:
+  runTime: "NodeJs"
+  version: ""
+  framework: "Directus-Postgres"
+  buildCommand: " "
+  buildDir: ""
+  runCommand: "npm run start"
+  installCommand: "npm install"
+  icon: "icon.png"
+  screenshot: "screenshot.png"
+ports:
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "443"
+    targetPort: "8055"
+    targetIP: "172.17.0.1"
+    public: true
+    path: "/"
+    isAuth: false
+    login: ""
+    password: ""
+exposedPorts:
+  - protocol: "HTTP"
+    hostPort: "8055"
+    containerPort: "8055"
+    interface: "172.17.0.1"
+volumes:
+  - hostPath: "./data"
+    containerPath: "/var/lib/postgresql/data"
+environments:
+  - key: "KEY"
+    value: "random_password"
+  - key: "SECRET"
+    value: "random_password"
+  - key: "DB_CLIENT"
+    value: 'pg'
+  - key: "DB_HOST"
+    value: '172.17.0.1'
+  - key: "DB_PORT"
+    value: '5432'
+  - key: "DB_DATABASE"
+    value: 'directus'
+  - key: "DB_USER"
+    value: 'directus'
+  - key: "DB_PASSWORD"
+    value: 'random_password'
+  - key: "CACHE_ENABLED"
+    value: 'false'
+  - key: "CACHE_STORE"
+    value: 'memory'
+  - key: "ADMIN_EMAIL"
+    value: '[EMAIL]'
+  - key: "ADMIN_PASSWORD"
+    value: 'random_password'
+webUI:
+  - url: "https://[CI_CD_DOMAIN]:34343"
+    label: "pgAdmin"
+    login: "[ADMIN_EMAIL]"
+    password: "[ADMIN_PASSWORD]"
+  - url: "https://[CI_CD_DOMAIN]"
+    label: "Directus Login"
+    login: "[ADMIN_EMAIL]"
+    password: "[ADMIN_PASSWORD]"    
